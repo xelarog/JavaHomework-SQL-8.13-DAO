@@ -1,13 +1,14 @@
 package ru.netology.dao.controller;
 
 
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import ru.netology.dao.service.SimpleService;
 
 @RestController
-public class SimpleController {
+public class SimpleController implements CommandLineRunner {
 
     SimpleService service;
 
@@ -20,4 +21,8 @@ public class SimpleController {
         return service.getProduct(name);
     }
 
+    @Override
+    public void run(String... args) throws Exception {
+        service.getRepository().createTable();
+    }
 }
